@@ -78,4 +78,30 @@ class Neo4jRestApi
     data = res.body
     result = JSON.parse(data)
   end
+
+  #cypher queries
+  def cypher_query query = nil, params = {}
+    data = { 'query' => query, 'params' => params }
+    headers = {
+      'Accept' => 'application/json; charset=UTF-8',
+      'Content-Type' => 'application/json',
+    }
+    post_request 'cypher', data, headers
+  end
+
+  #streaming
+  def streaming
+    headers = {
+      'Accept' => 'application/json; charset=UTF-8',
+      'X-Stream' => 'true',
+    }
+    get_request '', headers
+  end
+
+  #list all property keys
+  def property_keys
+    headers = { 'Accept' => 'application/json; charset=UTF-8' }
+    get_request 'propertykeys', headers
+  end
+
 end
