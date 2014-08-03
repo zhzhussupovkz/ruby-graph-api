@@ -104,4 +104,37 @@ class Neo4jRestApi
     get_request 'propertykeys', headers
   end
 
+  #create node
+  def create_node
+    headers = {
+      'Accept' => 'application/json; charset=UTF-8',
+    }
+    post_request url = 'node', headers = headers
+  end
+
+  #create node with props
+  def create_node_with_props data
+    headers = {
+      'Accept' => 'application/json; charset=UTF-8',
+      'Content-Type' => 'application/json',
+    }
+    post_request 'node', data, headers
+  end
+
+  #get node
+  def get_node id
+    headers = {
+      'Accept' => 'application/json; charset=UTF-8',
+    }
+    get_request '/node/' + id, headers
+  end
+
+  #delete node
+  def delete_node id
+    headers = {
+      'Accept' => 'application/json; charset=UTF-8',
+    }
+    delete_request 'node/' + id, headers
+  end
+
 end
